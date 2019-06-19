@@ -102,9 +102,9 @@ int BlackJack::judgeWinner() const {
     if (score1 < score2)
         return 2;
     if (cardCount1 > cardCount2)
-        return 2;
-    if (cardCount1 < cardCount2)
         return 1;
+    if (cardCount1 < cardCount2)
+        return 2;
     return 0;
 }
 
@@ -180,8 +180,8 @@ bool BlackJack::computerStage() {
     cardCount2 += 2;
 
     while (score2 < score1 || (score2 == score1 && cardCount2 > cardCount1)) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         card1 = drawCard();
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         std::cout << std::endl << "电脑获得牌" << '\t';
         displayCard(card1);
         recordSore(card1, score2);
